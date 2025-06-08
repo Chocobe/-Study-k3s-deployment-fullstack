@@ -1,0 +1,28 @@
+services:
+  backend:
+    container_name: study-k3s-deployment-backend-dev
+    image: chocobe/study-k3s-deployment-backend-dev
+    build:
+      context: .
+      dockerfile: ./backend.Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - $PWD/backend:/app
+      - study-k3s-deployment-backend-dev-node_modules:/app/node_modules
+
+  frontend:
+    container_name: study-k3s-deployment-frontend-dev
+    image: chocobe/study-k3s-deployment-frontend-dev
+    build:
+      context: .
+      dockerfile: ./frontend.Dockerfile
+    ports:
+      - 5173:5173
+    volumes:
+      - study-k3s-deployment-frontend-dev-node_modules:/app/node_modules
+      - $PWD/frontend:/app
+
+volumes:
+  study-k3s-deployment-backend-dev-node_modules:
+  study-k3s-deployment-frontend-dev-node_modules:
