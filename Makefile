@@ -88,3 +88,12 @@ k3s-frontend-prod-run:
 		--name k3s-frontend-prod \
 		chocobe/k3s-frontend-prod
 
+k3s-prod-compose-up:
+	docker compose \
+		-f ./docker/prod/docker-compose.yaml \
+		up
+
+k3s-prod-compose-down:
+	docker compose \
+		-f ./docker/prod/docker-compose.yaml \
+		down

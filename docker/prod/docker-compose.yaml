@@ -1,0 +1,17 @@
+services:
+  backend:
+    container_name: k3s-backend-prod
+    image: chocobe/k3s-backend-prod
+    build:
+      context: ../..
+      dockerfile: ./docker/prod/backend.Dockerfile
+    ports:
+      - 3000:3000
+  frontend:
+    container_name: k3s-frontend-prod
+    image: chocobe/k3s-frontend-prod
+    build:
+      context: ../..
+      dockerfile: ./docker/prod/frontend.Dockerfile
+    ports:
+      - 5173:80
