@@ -50,3 +50,25 @@ k3s-dev-compose-down:
 	docker compose \
 		-f ./docker/dev/docker-compose.yaml \
 		down
+
+# --- --- --- --- --- --- --- --- --- ---
+#
+# Production Mode
+#
+# --- --- --- --- --- --- --- --- --- ---
+k3s-frontend-prod-build:
+	docker build \
+		-f ./docker/prod/frontend.Dockerfile \
+		-t chocobe/k3s-frontend-prod \
+		--no-cache \
+		--progress=plain \
+		.
+
+k3s-frontend-prod-run:
+	docker run \
+		-it \
+		-p 5173:80 \
+		--rm \
+		--name k3s-frontend-prod \
+		chocobe/k3s-frontend-prod
+
