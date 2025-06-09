@@ -56,8 +56,24 @@ k3s-dev-compose-down:
 # Production Mode
 #
 # --- --- --- --- --- --- --- --- --- ---
+k3s-backend-prod-build:
+	time docker build \
+		-f ./docker/prod/backend.Dockerfile \
+		-t chocobe/k3s-backend-prod \
+		--progress=plain \
+		--no-cache \
+		.
+
+k3s-backend-prod-run:
+	docker run \
+		-it \
+		-p 3000:3000 \
+		--rm \
+		--name k3s-backend-prod \
+		chocobe/k3s-backend-prod
+
 k3s-frontend-prod-build:
-	docker build \
+	time docker build \
 		-f ./docker/prod/frontend.Dockerfile \
 		-t chocobe/k3s-frontend-prod \
 		--no-cache \
