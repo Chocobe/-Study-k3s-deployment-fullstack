@@ -1,7 +1,7 @@
 services:
   backend:
     container_name: study-k3s-deployment-backend-dev
-    image: chocobe/study-k3s-deployment-backend-dev
+    image: chocobe/k3s-backend-dev
     build:
       # context 에 상대 경로를 입력할 경우, 현재 docker-compose.yaml 파일의 경로를 기준으로 함
       context: ../..
@@ -10,12 +10,12 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - $PWD/backend:/app
       - study-k3s-deployment-backend-dev-node_modules:/app/node_modules
+      - ../../backend:/app
 
   frontend:
     container_name: study-k3s-deployment-frontend-dev
-    image: chocobe/study-k3s-deployment-frontend-dev
+    image: chocobe/k3s-frontend-dev
     build:
       # context 에 상대 경로를 입력할 경우, 현재 docker-compose.yaml 파일의 경로를 기준으로 함
       context: ../..
@@ -25,7 +25,7 @@ services:
       - 5173:5173
     volumes:
       - study-k3s-deployment-frontend-dev-node_modules:/app/node_modules
-      - $PWD/frontend:/app
+      - ../../frontend:/app
 
 volumes:
   study-k3s-deployment-backend-dev-node_modules:

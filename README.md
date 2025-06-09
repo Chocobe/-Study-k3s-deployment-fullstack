@@ -31,8 +31,6 @@ root/
 │   └── ... (Vite 앱 소스)
 ├── backend/
 │   └── ... (Express 앱 소스)
-├── nginx/
-│   └── default.conf
 ├── docker/
 │   ├── dev/
 │   │   ├── docker-compose.yml
@@ -41,5 +39,7 @@ root/
 │   └── prod/
 │       ├── docker-compose.yml
 │       ├── frontend.Dockerfile
-│       └── backend.Dockerfile
+│       ├── backend.Dockerfile
+│       └── nginx.conf
+└── Makefile
 ```

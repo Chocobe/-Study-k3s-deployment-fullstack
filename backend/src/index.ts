@@ -5,7 +5,7 @@ const PORT = 3000;
 const app = express();
 
 app.get('/api/hello', (_req, res) => {
-  res.json('Hello from Typescript backend');
+  res.json('Hello from Typescript backend 🥰🥰🥰');
 });
 
 app.listen(PORT, error => {

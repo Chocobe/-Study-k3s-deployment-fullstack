@@ -1,43 +1,46 @@
-frontend-dev-build:
+# --- --- --- --- --- --- --- --- --- ---
+#
+# Development Mode
+#
+# --- --- --- --- --- --- --- --- --- ---
+k3s-backend-dev-build:
 	docker build \
-		-f $(PWD)/docker/dev/frontend.Dockerfile \
-		-t chocobe/study-k3s-deployment-frontend-dev \
-		--progress=plain \
+		-f ./docker/dev/backend.Dockerfile \
+		-t chocobe/k3s-backend-dev \
 		.
 
-frontend-dev-run:
+k3s-backend-dev-run:
 	docker run \
 		-it \
-		--rm \
-		-p 5173:5173 \
-		-v $(PWD)/frontend:/app \
-		-v study-k3s-deployment-frontend-dev-node_modules:/app/node_modules \
-		--name study-k3s-deployment-frontend \
-		chocobe/study-k3s-deployment-frontend-dev
-
-backend-dev-build:
-	docker build \
-		-f $(PWD)/docker/dev/backend.Dockerfile \
-		-t chocobe/study-k3s-deployment-backend-dev \
-		--progress=plain \
-		.
-
-backend-dev-run:
-	docker run \
-		-it \
-		--rm \
 		-p 3000:3000 \
-		-v $(PWD)/backend:/app \
-		-v study-k3s-deployment-backend-dev-node_modules:/app/node_modules \
-		--name study-k3s-deployment-backend-dev \
-		chocobe/study-k3s-deployment-backend-dev
+		--rm \
+		--name k3s-backend-dev \
+		-v k3s-backend-dev-node_modules:/app/node_modules \
+		-v ./backend:/app \
+		chocobe/k3s-backend-dev
 
-dev-compose-up:
+k3s-frontend-dev-build:
+	docker build \
+		-f ./docker/dev/frontend.Dockerfile \
+		-t chocobe/k3s-frontend-dev \
+		.
+
+k3s-frontend-dev-run:
+	docker run \
+		-it \
+		-p 5173:5173 \
+		--rm \
+		--name k3s-frontend-dev \
+		-v k3s-frontend-dev-node_modules:/app/node_modules \
+		-v ./frontend:/app \
+		chocobe/k3s-frontend-dev
+
+k3s-dev-compose-up:
 	docker compose \
 		-f ./docker/dev/docker-compose.yaml \
 		up
 
-dev-compose-down:
+k3s-dev-compose-down:
 	docker compose \
 		-f ./docker/dev/docker-compose.yaml \
 		down
