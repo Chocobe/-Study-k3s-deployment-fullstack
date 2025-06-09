@@ -4,9 +4,9 @@ EXPOSE 3000
 
 ENV NODE_ENV=development
 
-COPY ../../backend/package.json ./
-COPY ../../backend/pnpm-lock.yaml ./
-
+# docker build 실행 시, 지정한 context 경로값을 기준으로 함
+COPY ./backend/package.json ./
+COPY ./backend/pnpm-lock.yaml ./
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 RUN pnpm install
