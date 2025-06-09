@@ -4,6 +4,8 @@
 #
 # --- --- --- --- --- --- --- --- --- ---
 k3s-backend-dev-build:
+	docker volume rm \
+		k3s-backend-dev-node_modules || true && \
 	docker build \
 		-f ./docker/dev/backend.Dockerfile \
 		-t chocobe/k3s-backend-dev \
@@ -20,9 +22,13 @@ k3s-backend-dev-run:
 		chocobe/k3s-backend-dev
 
 k3s-frontend-dev-build:
+	docker volume rm \
+		k3s-frontend-dev-node_modules || true && \
 	docker build \
 		-f ./docker/dev/frontend.Dockerfile \
 		-t chocobe/k3s-frontend-dev \
+		--no-cache \
+		--progress=plain \
 		.
 
 k3s-frontend-dev-run:
